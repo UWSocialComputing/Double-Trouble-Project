@@ -64,20 +64,23 @@ async function getVideosContainer () {
 
 function AddDivToVideo (container) {
     container = container.getElementsByClassName("style-scope ytd-item-section-renderer");
-    console.log(container)
     
     for (let i = 0; i < container.length; i++) {
-        console.log(container[i]);
+        let searchItem = container[i];
+        let videoItem = searchItem.getElementsByClassName("style-scope ytd-video-renderer")[0];
+        if (videoItem !== null && videoItem !== undefined) {
+            videoItem = videoItem.getElementsByClassName("text-wrapper style-scope ytd-video-renderer")[0];
+            videoItem = videoItem.getElementsByClassName("style-scope ytd-video-renderer")[10];
+            console.log(videoItem);
+        } else {
+            console.log("Not Video");
+        }
         // console.log(video);
         // ReactDOM.render(
         //     <App/>,
         //     video)
     
     }
-    container.forEach((video) => {
-        
-    }) 
-    
 }
 
 // let mainPage = document.querySelector("#ytd-page-manager");
