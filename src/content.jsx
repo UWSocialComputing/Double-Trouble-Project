@@ -72,14 +72,12 @@ function AddDivToVideo (container) {
             videoItem = videoItem.getElementsByClassName("text-wrapper style-scope ytd-video-renderer")[0];
             videoItem = videoItem.getElementsByClassName("style-scope ytd-video-renderer")[10];
             console.log(videoItem);
+            ReactDOM.render(
+                <App/>,
+                videoItem)
         } else {
             console.log("Not Video");
         }
-        // console.log(video);
-        // ReactDOM.render(
-        //     <App/>,
-        //     video)
-    
     }
 }
 
