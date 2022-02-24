@@ -7,7 +7,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/watch*"],
+      "matches": ["*://*.youtube.com/results*"],
       "css": ["content.css"],
       "js": ["content.js"]
     }

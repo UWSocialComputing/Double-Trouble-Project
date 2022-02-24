@@ -8,10 +8,10 @@ import 'jquery/dist/jquery.min.js';
 //import 'bootstrap/dist/js/bootstrap.min.js';
 
 
-
-
-
 console.log('hellooooo');
+
+
+
 let video = document.querySelector("#movie_player > div.html5-video-container > video");
 
 video.addEventListener('canplay', function load() {
