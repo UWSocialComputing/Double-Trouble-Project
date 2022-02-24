@@ -14,14 +14,21 @@ console.log('hellooooo');
 
 let mainPage = document.querySelector("#ytd-page-manager");
 
-//window.addEventListener('load', (event) => {});
-document.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('load', (event) => {
     console.log('DOM loaded');
     let addBoxes = addCredDivs;
     let credBoxes = addBoxes[0];
     let channelNames = addBoxes[1];
-    
 });
+
+// window.addEventListener('DOMContentLoaded', (event) => {
+    
+    
+// });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     console.log('DOM loaded2');
+// });
 
 
 async function addCredDivs () {
