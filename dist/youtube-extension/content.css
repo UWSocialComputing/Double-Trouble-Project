@@ -1,0 +1,41 @@
+/*!*******************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/content.css ***!
+  \*******************************************************************/
+body {
+  color: darkred;
+}
+
+.citation-button-title {
+  color: crimson;
+}
+
+@media (prefers-color-scheme: light) {
+  .citation-view.light-scheme {background: white; color: black;}
+}
+@media (prefers-color-scheme: dark) {
+  .citation-view.dark-scheme {background: black; color: white;}
+}
+
+.view-buttons {
+  padding: 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.button {
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.active-button {
+  background-color: black;
+  color: white;
+}
+
+.list-view-block {
+  overflow-y: scroll;
+  max-height: 200px;
+}
