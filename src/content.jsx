@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './content.css';
-// import { render } from 'react-dom'; //this isn't used, does it need to be here?
+import { render } from 'react-dom'; //this isn't used, does it need to be here?
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 //import 'bootstrap/dist/js/bootstrap.min.js';
@@ -72,9 +72,14 @@ function AddDivToVideo (container) {
             videoItem = videoItem.getElementsByClassName("text-wrapper style-scope ytd-video-renderer")[0];
             videoItem = videoItem.getElementsByClassName("style-scope ytd-video-renderer")[10];
             console.log(videoItem);
+
+            let div = document.createElement("div");
+            div.id = "citation-box";
+
+            videoItem.insertBefore(div, videoItem.children[0]);
             ReactDOM.render(
                 <App/>,
-                videoItem)
+                div)
         } else {
             console.log("Not Video");
         }
