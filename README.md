@@ -12,7 +12,7 @@
 
 5. Make sure this extension is enabled. If the extension doesn't show up the first time on a video, try refreshing the page.
 
-6. Search up any youtube video to get to a page like: https://www.youtube.com/results?search_query=reactjs. If the extension is enabled, you should be able to see: Affirm and Refute buttons, and WOW! text.
+6. Search up any youtube video to get to a page like: https://www.youtube.com/results?search_query=reactjs. If the extension is enabled, you should be able to see: Affirm and Refute buttons.
 
 7. Do note that the buttons will not work as expected currently. Take note of any bugs or unintuitive elements, and leave us some feedback. :)
 

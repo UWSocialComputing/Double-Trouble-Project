@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 function App(){
     return (
         <div className="citation-box">
-            WOW! wow w o w
+            Test UI:
             <button>Affirm</button>
             <button>Refute</button>
         </div>
