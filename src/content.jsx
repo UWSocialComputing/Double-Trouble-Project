@@ -2,39 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './content.css';
-import { render } from 'react-dom'; //this isn't used, does it need to be here?
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
-//import 'bootstrap/dist/js/bootstrap.min.js';
 
-// let mainPage = document.querySelector("#ytd-page-manager");
-
-// Main DOM load event
-window.addEventListener('load', (event) => {
-    // TODO: Leaving some notes:
-    // Once waiting for the page to fully load, all channel infos are able to be found
-    // All divs will be found, even the bugged ones from before
-    // Paging:
-    // After 27 or so videos, youtube will load the next ones on screen scroll
-    // This is not supported yet, so we'll need to handle code to wait for certain parts of the screen
-    // to fully load
-    
-    let addBoxes = addCredDivs();
-
-    // setTimeout(function () {
-    //     let addBoxes = addCredDivs();
-    //     // let credBoxes = addBoxes[0];
-    //     // let channelNames = addBoxes[1];
-    // }, 10);
-
-    
-});
-
-// let video = document.querySelector("#movie_player > div.html5-video-container > video");
-
-// video.addEventListener('canplay', function load() {
-    
-// })
+setInterval(addCredDivs, 2000);
 
 async function addCredDivs () {
     let channelInfo = null;
@@ -43,7 +13,7 @@ async function addCredDivs () {
     }
     let credDivs = new Array();
     let channelNames = new Array();
-    console.log(channelInfo);
+    // console.log(channelInfo);
     if(channelInfo !== null) {
         for (let i = 0; i < channelInfo.length; i++) {
             let container = channelInfo[i];
@@ -57,14 +27,13 @@ async function addCredDivs () {
             channelNames.push(channelName);
 
             if(container.nextSibling.id == channelName) {
-                console.log("prin2t")
+                // console.log("remove stale")
                 container.parentNode.removeChild(container.nextSibling);
-            } else {
-                insertAfter(div, container);
+            }
+            insertAfter(div, container);
                 ReactDOM.render(
                     <App/>,
                     div)
-            }
         }
     }
     return ([credDivs, channelNames]);
