@@ -18,12 +18,14 @@ window.addEventListener('load', (event) => {
     // After 27 or so videos, youtube will load the next ones on screen scroll
     // This is not supported yet, so we'll need to handle code to wait for certain parts of the screen
     // to fully load
+    
+    let addBoxes = addCredDivs();
 
-    setTimeout(function () {
-        let addBoxes = addCredDivs();
-        let credBoxes = addBoxes[0];
-        let channelNames = addBoxes[1];
-    }, 5000);
+    // setTimeout(function () {
+    //     let addBoxes = addCredDivs();
+    //     // let credBoxes = addBoxes[0];
+    //     // let channelNames = addBoxes[1];
+    // }, 10);
 
     
 });
@@ -35,8 +37,10 @@ window.addEventListener('load', (event) => {
 // })
 
 async function addCredDivs () {
-    const channelInfo = document.querySelectorAll('[id="channel-info"]');
-    await loadChannelInfo(channelInfo, 500);
+    let channelInfo = null;
+    while (channelInfo == null || channelInfo == undefined) {
+        channelInfo = await loadChannelInfo(channelInfo, 500);
+    }
     let credDivs = new Array();
     let channelNames = new Array();
     console.log(channelInfo);
@@ -52,17 +56,15 @@ async function addCredDivs () {
             credDivs.push(div);
             channelNames.push(channelName);
 
-            // if(container.nextSibling.id = channelName) {
-            //     console.log("prin2t")
-            //     container.parentNode.removeChild(container.nextSibling);
-            // } else {
-            //     console.log("print")
-                
-            // }
-            insertAfter(div, container);
-            ReactDOM.render(
-                <App/>,
-                div)
+            if(container.nextSibling.id == channelName) {
+                console.log("prin2t")
+                container.parentNode.removeChild(container.nextSibling);
+            } else {
+                insertAfter(div, container);
+                ReactDOM.render(
+                    <App/>,
+                    div)
+            }
         }
     }
     return ([credDivs, channelNames]);
