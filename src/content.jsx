@@ -7,96 +7,25 @@ import { render } from 'react-dom'; //this isn't used, does it need to be here?
 import 'jquery/dist/jquery.min.js';
 //import 'bootstrap/dist/js/bootstrap.min.js';
 
-
-console.log('hellooooo');
-
-function loadMetacontents(contents, ms) {
-    return new Promise((resolve) => {
-        let interval = setInterval(() => {
-            contents = document.getElementById("meta-contents");
-            console.log(contents);
-            if (contents !== null && contents !== undefined) {
-                resolve(contents);
-                clearInterval(interval);
-            } else {
-                resolve(loadMetacontents);
-            }
-        }, ms);
-    });
-}
-
-function loadHTML(contents, container, ms) {
-    return new Promise((resolve) => {
-        let interval = setInterval(() => {
-            container = contents.getElementsByClassName("style-scope ytd-page-manager")[0];
-            if (container !== null && container !== undefined) {
-                resolve(container);
-                clearInterval(interval);
-            } else {
-                resolve(loadHTML);
-            }
-        }, ms);
-    });
-}
-
-async function getVideosContainer () {
-    let div = document.createElement("div");
-    div.id = "citation-box";
-
-    let container = null;
-
-    let contents = document.getElementById("page-manager");
-    if (contents !== null) {
-        container = contents.getElementsByClassName("style-scope ytd-page-manager")[0];
-        while (container === null || container === undefined) {
-            container = await loadHTML(contents, container, 700);
-        }
-        container = container.getElementsByClassName("style-scope ytd-search")[0];
-        container = container.getElementsByClassName("style-scope ytd-search")[0];
-        container = container.getElementsByClassName("style-scope ytd-two-column-search-results-renderer")[0];
-        container = container.getElementsByClassName("style-scope ytd-two-column-search-results-renderer")[0];
-        container = container.getElementsByClassName("style-scope ytd-section-list-renderer")[4];
-        container = container.getElementsByClassName("style-scope ytd-section-list-renderer")[0];
-        container = container.getElementsByClassName("style-scope ytd-item-section-renderer")[3];
-    }
-    return container;
-}
-
-function AddDivToVideo (container) {
-    container = container.getElementsByClassName("style-scope ytd-item-section-renderer");
-    
-    for (let i = 0; i < container.length; i++) {
-        let searchItem = container[i];
-        let videoItem = searchItem.getElementsByClassName("style-scope ytd-video-renderer")[0];
-        if (videoItem !== null && videoItem !== undefined) {
-            videoItem = videoItem.getElementsByClassName("text-wrapper style-scope ytd-video-renderer")[0];
-            videoItem = videoItem.getElementsByClassName("style-scope ytd-video-renderer")[10];
-            console.log(videoItem);
-
-            let div = document.createElement("div");
-            div.id = "citation-box";
-
-            videoItem.insertBefore(div, videoItem.children[0]);
-            ReactDOM.render(
-                <App/>,
-                div)
-        } else {
-            console.log("Not Video");
-        }
-    }
-}
-
 // let mainPage = document.querySelector("#ytd-page-manager");
 
 // Main DOM load event
 window.addEventListener('load', (event) => {
-    // let addBoxes = addCredDivs;
-    // let credBoxes = addBoxes[0];
-    // let channelNames = addBoxes[1];
+    // TODO: Leaving some notes:
+    // Once waiting for the page to fully load, all channel infos are able to be found
+    // All divs will be found, even the bugged ones from before
+    // Paging:
+    // After 27 or so videos, youtube will load the next ones on screen scroll
+    // This is not supported yet, so we'll need to handle code to wait for certain parts of the screen
+    // to fully load
 
-    getVideosContainer().then((container) => {
-        AddDivToVideo(container);
-    });
+    setTimeout(function () {
+        let addBoxes = addCredDivs();
+        let credBoxes = addBoxes[0];
+        let channelNames = addBoxes[1];
+    }, 5000);
+
+    
 });
 
 // let video = document.querySelector("#movie_player > div.html5-video-container > video");
@@ -106,7 +35,8 @@ window.addEventListener('load', (event) => {
 // })
 
 async function addCredDivs () {
-    const channelInfo = document.querySelectorAll("[id='channel-info']");
+    const channelInfo = document.querySelectorAll('[id="channel-info"]');
+    console.log(channelInfo);
     await loadChannelInfo(channelInfo, 500);
     let credDivs = new Array();
     let channelNames = new Array();
