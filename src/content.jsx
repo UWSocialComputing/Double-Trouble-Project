@@ -36,15 +36,14 @@ window.addEventListener('load', (event) => {
 
 async function addCredDivs () {
     const channelInfo = document.querySelectorAll('[id="channel-info"]');
-    console.log(channelInfo);
     await loadChannelInfo(channelInfo, 500);
     let credDivs = new Array();
     let channelNames = new Array();
-    
+    console.log(channelInfo);
     if(channelInfo !== null) {
         for (let i = 0; i < channelInfo.length; i++) {
-            let container = collection[i];
-            let channelNameElement = collection[i].getElementsByClassName("yt-simple-endpoint style-scope yt-formatted-string")[0];
+            let container = channelInfo[i];
+            let channelNameElement = channelInfo[i].getElementsByClassName("yt-simple-endpoint style-scope yt-formatted-string")[0];
             let channelName = channelNameElement.textContent.split(" ").join("-");
             let div = document.createElement("div");
             div.className = "cred-signal-box";
@@ -53,11 +52,17 @@ async function addCredDivs () {
             credDivs.push(div);
             channelNames.push(channelName);
 
-            if(container.nextSibling.id = channelName) {
-                container.parentNode.removeChild(container.nextSibling);
-            } else {
-                insertAfter(div, container);
-            }
+            // if(container.nextSibling.id = channelName) {
+            //     console.log("prin2t")
+            //     container.parentNode.removeChild(container.nextSibling);
+            // } else {
+            //     console.log("print")
+                
+            // }
+            insertAfter(div, container);
+            ReactDOM.render(
+                <App/>,
+                div)
         }
     }
     return ([credDivs, channelNames]);
