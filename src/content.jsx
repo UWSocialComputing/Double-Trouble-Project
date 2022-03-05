@@ -4,7 +4,11 @@ import App from './App';
 import './content.css';
 import 'jquery/dist/jquery.min.js';
 
-setInterval(addCredDivs, 2000);
+window.addEventListener('load', (event) => {
+    setTimeout(function () {
+        addCredDivs();
+    }, 2000);
+});
 
 async function addCredDivs () {
     let channelInfo = null;
